@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Znvc Rat | Login</title>
+    <style>
+        body { margin: 0; background: #050505; color: #fff; font-family: 'Segoe UI', sans-serif; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; }
+        canvas { position: absolute; top: 0; left: 0; z-index: 0; }
+        .card { position: relative; z-index: 1; background: rgba(20, 20, 30, 0.7); backdrop-filter: blur(20px); padding: 50px; border-radius: 25px; border: 1px solid #4a0080; text-align: center; box-shadow: 0 0 50px rgba(138, 43, 226, 0.4); transition: 0.4s; }
+        .card:hover { transform: translateY(-5px); border-color: #bf00ff; }
+        h1 { font-size: 3.5rem; color: #bf00ff; text-shadow: 0 0 20px #bf00ff; margin-bottom: 30px; }
+        a { display: inline-block; padding: 15px 30px; background: #5865F2; color: white; text-decoration: none; border-radius: 10px; font-weight: bold; transition: 0.3s; }
+        a:hover { transform: scale(1.1); box-shadow: 0 0 30px #5865F2; }
+        .footer { position: absolute; bottom: 20px; color: #555; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <canvas id="bubbleCanvas"></canvas>
+    <div class="card">
+        <h1>Znvc Rat</h1>
+        <a href="/login">Login with Discord</a>
+    </div>
+    <div class="footer">made by znvc</div>
+
+    <script>
+        const canvas = document.getElementById('bubbleCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let bubbles = [];
+
+        function createBubble(x, y) {
+            bubbles.push({ x: x  Math.random() * canvas.width, y: y  canvas.height + 50, r: Math.random() * 10 + 5, speed: Math.random() * 2 + 1 });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            bubbles.forEach((b, i) => {
+                b.y -= b.speed;
+                ctx.beginPath();
+                ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(191, 0, 255, 0.2)';
+                ctx.fill();
+                if (b.y < -50) bubbles.splice(i, 1);
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('click', (e) => { for(let i=0; i<5; i++) createBubble(e.clientX, e.clientY); });
+        setInterval(() => createBubble(), 1000);
+        animate();
+    </script>
+</body>
+</html>
