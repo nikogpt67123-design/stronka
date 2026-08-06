@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body { background: #050505; color: #fff; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding-top: 50px; }
+        .banner { background: #00ff41; color: black; padding: 10px 20px; border-radius: 5px; margin-bottom: 20px; font-weight: bold; }
+        .card { background: rgba(20, 20, 30, 0.7); padding: 20px; border-radius: 15px; border: 1px solid #00ff41; }
+    </style>
+</head>
+<body>
+    <div class="banner">✓ Logged in successfully</div>
+    <div class="card">
+        <img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" width="100" style="border-radius: 50%;">
+        <h2>Welcome, <%= user.username %></h2>
+    </div>
+</body>
+</html>
